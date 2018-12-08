@@ -16,6 +16,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -32,6 +37,7 @@ public class MainActivity extends Activity {
     private float rotation = 90;
     private boolean isReady = true;
     private Menu menu;
+    private InterstitialAd interstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,17 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         imgMain = findViewById(R.id.effect_main);
         src = BitmapFactory.decodeResource(getResources(), R.drawable.image);
+        View adView = findViewById(R.id.adView);
+        ((AdView) adView).setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                adView.setVisibility(View.VISIBLE);
+            }
+        });
+        ((AdView) adView).loadAd(new AdRequest.Builder().build());
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId(getString(R.string.int_id));
+        interstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
     @Override
@@ -158,7 +175,7 @@ public class MainActivity extends Activity {
         else if (v.getId() == R.id.effect_tint)
             saveBitmap(imgFilter.applyTintEffect(src, 100, prgrBar), "effect_tint");
         else if (v.getId() == R.id.effect_watermark)
-            saveBitmap(imgFilter.applyWaterMarkEffect(src, "kpbird.com", 200, 200, Color.GREEN, 80, 24, false, prgrBar), "effect_watermark");
+            saveBitmap(imgFilter.applyWaterMarkEffect(src, "", 200, 200, Color.GREEN, 80, 24, false, prgrBar), "effect_watermark");
     }
 
     private void saveBitmap(Bitmap bmp, String fileName) {
@@ -219,8 +236,6 @@ public class MainActivity extends Activity {
                 height_tmp /= 2;
                 scale *= 2;
             }
-
-            // Decode with inSampleSize
             BitmapFactory.Options o2 = new BitmapFactory.Options();
             o2.inSampleSize = scale;
             return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
@@ -256,5 +271,13 @@ public class MainActivity extends Activity {
         File file = new File(getFilesDir(), RESULT_PHOTO);
         intent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", file));
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (interstitialAd != null && interstitialAd.isLoaded()) {
+            interstitialAd.show();
+        }
     }
 }

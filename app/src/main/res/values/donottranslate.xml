@@ -5,4 +5,7 @@
     <string name="action_pick">Pick</string>
     <string name="action_capture">Capture</string>
     <string name="action_share">Share</string>
+    <string name="app_id">ca-app-pub-8761730220693010~6420867144</string>
+    <string name="banner_id">ca-app-pub-8761730220693010/8727342575</string>
+    <string name="int_id">ca-app-pub-8761730220693010/7861817611</string>
 </resources>
