@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +22,8 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import java.io.File;
 import java.io.FileOutputStream;
+
+import androidx.core.content.FileProvider;
 
 import static android.content.Intent.ACTION_SEND;
 
@@ -112,77 +113,74 @@ public class MainActivity extends Activity {
 
         //        else if(v.getId() == R.id.effect_highlight)
         //            saveBitmap(imgFilter.applyHighlightEffect(src), "effect_highlight");
-        if (v.getId() == R.id.effect_black)
-            saveBitmap(imgFilter.applyBlackFilter(src, prgrBar), "effect_black");
+        if (v.getId() == R.id.effect_black) saveBitmap(imgFilter.applyBlackFilter(src, prgrBar));
         else if (v.getId() == R.id.effect_boost_1)
-            saveBitmap(imgFilter.applyBoostEffect(src, 1, 40, prgrBar), "effect_boost_1");
+            saveBitmap(imgFilter.applyBoostEffect(src, 1, 40, prgrBar));
         else if (v.getId() == R.id.effect_boost_2)
-            saveBitmap(imgFilter.applyBoostEffect(src, 2, 30, prgrBar), "effect_boost_2");
+            saveBitmap(imgFilter.applyBoostEffect(src, 2, 30, prgrBar));
         else if (v.getId() == R.id.effect_boost_3)
-            saveBitmap(imgFilter.applyBoostEffect(src, 3, 67, prgrBar), "effect_boost_3");
+            saveBitmap(imgFilter.applyBoostEffect(src, 3, 67, prgrBar));
         else if (v.getId() == R.id.effect_brightness)
-            saveBitmap(imgFilter.applyBrightnessEffect(src, 80, prgrBar), "effect_brightness");
+            saveBitmap(imgFilter.applyBrightnessEffect(src, 80, prgrBar));
         else if (v.getId() == R.id.effect_color_red)
-            saveBitmap(imgFilter.applyColorFilterEffect(src, 255, 0, 0, prgrBar), "effect_color_red");
+            saveBitmap(imgFilter.applyColorFilterEffect(src, 255, 0, 0, prgrBar));
         else if (v.getId() == R.id.effect_color_green)
-            saveBitmap(imgFilter.applyColorFilterEffect(src, 0, 255, 0, prgrBar), "effect_color_green");
+            saveBitmap(imgFilter.applyColorFilterEffect(src, 0, 255, 0, prgrBar));
         else if (v.getId() == R.id.effect_color_blue)
-            saveBitmap(imgFilter.applyColorFilterEffect(src, 0, 0, 255, prgrBar), "effect_color_blue");
+            saveBitmap(imgFilter.applyColorFilterEffect(src, 0, 0, 255, prgrBar));
         else if (v.getId() == R.id.effect_color_depth_64)
-            saveBitmap(imgFilter.applyDecreaseColorDepthEffect(src, 64, prgrBar), "effect_color_depth_64");
+            saveBitmap(imgFilter.applyDecreaseColorDepthEffect(src, 64, prgrBar));
         else if (v.getId() == R.id.effect_color_depth_32)
-            saveBitmap(imgFilter.applyDecreaseColorDepthEffect(src, 32, prgrBar), "effect_color_depth_32");
+            saveBitmap(imgFilter.applyDecreaseColorDepthEffect(src, 32, prgrBar));
         else if (v.getId() == R.id.effect_contrast)
-            saveBitmap(imgFilter.applyContrastEffect(src, 70, prgrBar), "effect_contrast");
+            saveBitmap(imgFilter.applyContrastEffect(src, 70, prgrBar));
         else if (v.getId() == R.id.effect_emboss)
-            saveBitmap(imgFilter.applyEmbossEffect(src, prgrBar), "effect_emboss");
+            saveBitmap(imgFilter.applyEmbossEffect(src, prgrBar));
         else if (v.getId() == R.id.effect_engrave)
-            saveBitmap(imgFilter.applyEngraveEffect(src, prgrBar), "effect_engrave");
-        else if (v.getId() == R.id.effect_flea)
-            saveBitmap(imgFilter.applyFleaEffect(src, prgrBar), "effect_flea");
+            saveBitmap(imgFilter.applyEngraveEffect(src, prgrBar));
+        else if (v.getId() == R.id.effect_flea) saveBitmap(imgFilter.applyFleaEffect(src, prgrBar));
         else if (v.getId() == R.id.effect_gaussian_blue)
-            saveBitmap(imgFilter.applyGaussianBlurEffect(src, prgrBar), "effect_gaussian_blue");
+            saveBitmap(imgFilter.applyGaussianBlurEffect(src, prgrBar));
         else if (v.getId() == R.id.effect_gamma)
-            saveBitmap(imgFilter.applyGammaEffect(src, 1.8, 1.8, 1.8, prgrBar), "effect_gamma");
+            saveBitmap(imgFilter.applyGammaEffect(src, 1.8, 1.8, 1.8, prgrBar));
         else if (v.getId() == R.id.effect_grayscale)
-            saveBitmap(imgFilter.applyGreyscaleEffect(src, prgrBar), "effect_grayscale");
+            saveBitmap(imgFilter.applyGreyscaleEffect(src, prgrBar));
         else if (v.getId() == R.id.effect_hue)
-            saveBitmap(imgFilter.applyHueFilter(src, 2, prgrBar), "effect_hue");
+            saveBitmap(imgFilter.applyHueFilter(src, 2, prgrBar));
         else if (v.getId() == R.id.effect_invert)
-            saveBitmap(imgFilter.applyInvertEffect(src, prgrBar), "effect_invert");
+            saveBitmap(imgFilter.applyInvertEffect(src, prgrBar));
         else if (v.getId() == R.id.effect_mean_remove)
-            saveBitmap(imgFilter.applyMeanRemovalEffect(src, prgrBar), "effect_mean_remove");
+            saveBitmap(imgFilter.applyMeanRemovalEffect(src, prgrBar));
             //        else if(v.getId() == R.id.effect_reflaction)
             //            saveBitmap(imgFilter.applyReflection(src),"effect_reflaction");
         else if (v.getId() == R.id.effect_round_corner)
-            saveBitmap(imgFilter.applyRoundCornerEffect(src, 45), "effect_round_corner");
+            saveBitmap(imgFilter.applyRoundCornerEffect(src, 45));
         else if (v.getId() == R.id.effect_saturation)
-            saveBitmap(imgFilter.applySaturationFilter(src, 1, prgrBar), "effect_saturation");
+            saveBitmap(imgFilter.applySaturationFilter(src, 1, prgrBar));
         else if (v.getId() == R.id.effect_sepia)
-            saveBitmap(imgFilter.applySepiaToningEffect(src, 10, 1.5, 0.6, 0.12, prgrBar), "effect_sepia");
+            saveBitmap(imgFilter.applySepiaToningEffect(src, 10, 1.5, 0.6, 0.12, prgrBar));
         else if (v.getId() == R.id.effect_sepia_green)
-            saveBitmap(imgFilter.applySepiaToningEffect(src, 10, 0.88, 2.45, 1.43, prgrBar), "effect_sepia_green");
+            saveBitmap(imgFilter.applySepiaToningEffect(src, 10, 0.88, 2.45, 1.43, prgrBar));
         else if (v.getId() == R.id.effect_sepia_blue)
-            saveBitmap(imgFilter.applySepiaToningEffect(src, 10, 1.2, 0.87, 2.1, prgrBar), "effect_sepia_blue");
+            saveBitmap(imgFilter.applySepiaToningEffect(src, 10, 1.2, 0.87, 2.1, prgrBar));
         else if (v.getId() == R.id.effect_smooth)
-            saveBitmap(imgFilter.applySmoothEffect(src, 100, prgrBar), "effect_smooth");
+            saveBitmap(imgFilter.applySmoothEffect(src, 100, prgrBar));
         else if (v.getId() == R.id.effect_sheding_cyan)
-            saveBitmap(imgFilter.applyShadingFilter(src, Color.CYAN, prgrBar), "effect_sheding_cyan");
+            saveBitmap(imgFilter.applyShadingFilter(src, Color.CYAN, prgrBar));
         else if (v.getId() == R.id.effect_sheding_yellow)
-            saveBitmap(imgFilter.applyShadingFilter(src, Color.YELLOW, prgrBar), "effect_sheding_yellow");
+            saveBitmap(imgFilter.applyShadingFilter(src, Color.YELLOW, prgrBar));
         else if (v.getId() == R.id.effect_sheding_green)
-            saveBitmap(imgFilter.applyShadingFilter(src, Color.GREEN, prgrBar), "effect_sheding_green");
+            saveBitmap(imgFilter.applyShadingFilter(src, Color.GREEN, prgrBar));
         else if (v.getId() == R.id.effect_tint)
-            saveBitmap(imgFilter.applyTintEffect(src, 100, prgrBar), "effect_tint");
+            saveBitmap(imgFilter.applyTintEffect(src, 100, prgrBar));
         else if (v.getId() == R.id.effect_watermark)
-            saveBitmap(imgFilter.applyWaterMarkEffect(src, "", 200, 200, Color.GREEN, 80, 24, false, prgrBar), "effect_watermark");
+            saveBitmap(imgFilter.applyWaterMarkEffect(src, "", 200, 200, Color.GREEN, 80, 24, false, prgrBar));
     }
 
-    private void saveBitmap(Bitmap bmp, String fileName) {
-        try {
-            imgMain.setImageBitmap(bmp);
-            File f = new File(getFilesDir(), RESULT_PHOTO);
-            FileOutputStream fos = new FileOutputStream(f);
+    private void saveBitmap(Bitmap bmp) {
+        File f = new File(getFilesDir(), RESULT_PHOTO);
+        try (FileOutputStream fos = new FileOutputStream(f)) {
+            runOnUiThread(() -> imgMain.setImageBitmap(bmp));
             bmp.compress(Bitmap.CompressFormat.PNG, 90, fos);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -192,7 +190,9 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        if (interstitialAd != null && interstitialAd.isLoaded()) {
+            interstitialAd.show();
+        }
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case SELECT_PHOTO:
@@ -271,13 +271,5 @@ public class MainActivity extends Activity {
         File file = new File(getFilesDir(), RESULT_PHOTO);
         intent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", file));
         startActivity(intent);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        if (interstitialAd != null && interstitialAd.isLoaded()) {
-            interstitialAd.show();
-        }
     }
 }
